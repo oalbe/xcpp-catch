@@ -1,0 +1,14 @@
+*.sublime-workspace
+*.sublime-project
+__pycache__/
+.cache/
+build/
+*.pytest.restart
+
+# Related to the cpp track
+boost/
+*.cmake
+*.exe
+Makefile
+CMakeFiles/
+CMakeCache.txt
