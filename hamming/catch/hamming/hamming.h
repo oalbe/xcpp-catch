@@ -8,6 +8,10 @@ namespace hamming {
             throw std::domain_error("Strands lengths are different.");
         }
         
+        if (first_strand == second_strand) {
+            return 0;
+        }
+        
         std::size_t difference = 0;
         std::size_t strands_len = first_strand.size();
         for (std::size_t i = 0; i < strands_len; ++i) {
