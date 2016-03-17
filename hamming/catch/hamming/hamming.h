@@ -3,23 +3,17 @@
 
 #include <string>
 #include <stdexcept>
+#include <numeric>
 
 
 namespace hamming {
-    std::size_t compute(const std::string& first_strand, const std::string& second_strand) {
+    int compute(const std::string& first_strand, const std::string& second_strand) {
         if (first_strand.size() != second_strand.size()) {
             throw std::domain_error("Strands lengths are different.");
         }
         
-        std::size_t difference = 0;
-        std::size_t strands_len = first_strand.size();
-        for (std::size_t i = 0; i < strands_len; ++i) {
-            if (first_strand[i] != second_strand[i]) {
-                ++difference;
-            }
-        }
-        
-        return difference;
+        return std::inner_product(first_strand.begin(), first_strand.end(), second_strand.begin(),
+            0, std::plus<int>(), std::not_equal_to<int>());
     }
 }
 
