@@ -6,6 +6,7 @@ build/
 *.pytest.restart
 
 # Related to the cpp track
+cmake/
 boost/
 *.cmake
 *.exe
