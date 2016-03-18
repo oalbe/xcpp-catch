@@ -1,50 +1,57 @@
 #include "anagram.h"
 
-std::string anagram::anagram::lower(const std::string& input_string) const {
-    std::string output_str = input_string;
-    std::transform(output_str.begin(), output_str.end(), output_str.begin(), ::tolower);
-    
-    return output_str;
-}
 
-std::map<char, std::size_t> anagram::anagram::map_word(std::string sequence) const {
-    std::map<char, std::size_t> mapped_sequence;
+anagram::anagram::anagram(const std::string input) {
+    sample = input;
+    sample_size = sample.size();
     
-    std::size_t sequence_size = sequence.size();
-    for (std::size_t i = 0; i < sequence_size; ++i) {
-        if (mapped_sequence.count(sequence[i])) {
-            mapped_sequence[sequence[i]] += 1;
+    std::string lower_sample = lower(sample);
+    for (char character : lower_sample) {
+        if (mapped_sample.count(character)) {
+            mapped_sample[character] += 1;
         } else {
-            mapped_sequence[sequence[i]] = 1;
+            mapped_sample[character] = 1;
+            zero_mapped_sample[character] = 0;
         }
     }
-    
-    return mapped_sequence;
 }
 
-bool anagram::anagram::is_anagram(std::string candidate) const {
+bool anagram::anagram::is_anagram(const std::string candidate) const {
     if (sample_size != candidate.size()) {
         return false;
     }
+    
+    std::map<char, std::size_t> mapped_sample_copy(mapped_sample);
+    for (char character : candidate) {
+        mapped_sample_copy[character] -= 1;
+    }
 
-    return map_word(candidate) == mapped_sample;
+    return zero_mapped_sample == mapped_sample_copy;
 }
 
 std::vector<std::string>
 anagram::anagram::matches(const std::vector<std::string>& candidates) const {
     std::vector<std::string> __matches;
     
-    std::size_t candidates_size = candidates.size();
-    for (size_t i = 0; i < candidates_size; ++i) {
-        std::string current = lower(candidates[i]);
-        if (sample == current) {
+    std::string lower_sample = lower(sample);
+    for (std::string candidate : candidates) {
+        std::string current = lower(candidate);
+        
+        if (lower_sample == current) {
             continue;
         }
         
         if (is_anagram(current)) {
-            __matches.push_back(candidates[i]);
+            __matches.push_back(candidate);
         }
     }
     
     return __matches;
+}
+
+std::string anagram::anagram::lower(const std::string& input_string) const {
+    std::string output_str = input_string;
+    std::transform(output_str.begin(), output_str.end(), output_str.begin(), ::tolower);
+    
+    return output_str;
 }
