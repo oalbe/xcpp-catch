@@ -23,7 +23,7 @@ namespace anagram {
     public:
         anagram(const std::string input);
 
-        bool is_anagram(std::string candidate) const;
+        bool is_anagram(const std::string candidate) const;
         std::vector<std::string> matches(const std::vector<std::string>& candidates) const;
     };
 }
