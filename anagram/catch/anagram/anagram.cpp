@@ -32,9 +32,8 @@ bool anagram::is_anagram(const std::string& candidate) const {
     return true;
 }
 
-std::vector<std::string>
-anagram::matches(const std::vector<std::string>& candidates) const {
-    std::vector<std::string> __matches;
+words_t anagram::matches(const words_t& candidates) const {
+    words_t __matches;
     
     std::string lower_sample = lower(sample);
     for (std::string candidate : candidates) {

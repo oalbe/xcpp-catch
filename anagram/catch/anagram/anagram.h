@@ -10,6 +10,7 @@
 namespace anagram {
 
 typedef std::map<char, std::size_t> histogram_t;
+typedef std::vector<std::string> words_t;
 
 class anagram {
     // The word against which the program tests candidate anagrams.
@@ -24,7 +25,7 @@ public:
     anagram(const std::string& input);
 
     bool is_anagram(const std::string& candidate) const;
-    std::vector<std::string> matches(const std::vector<std::string>& candidates) const;
+    words_t matches(const std::vector<std::string>& candidates) const;
 };
 
 } // namespace anagram
