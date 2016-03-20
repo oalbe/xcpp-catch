@@ -14,7 +14,6 @@ TEST_CASE("Has no nucleotides", "[answer]") {
     REQUIRE(expected == actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("Has no adenosine", "[answer]") {
     const dna::counter dna("");
 
@@ -64,4 +63,6 @@ TEST_CASE("Counts all nucleotides", "[answer]") {
 
     REQUIRE(expected == actual);
 }
+
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
