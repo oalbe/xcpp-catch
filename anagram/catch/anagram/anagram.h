@@ -4,12 +4,12 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <map>
+#include <unordered_map>
 
 
 namespace anagram {
 
-typedef std::map<char, std::size_t> histogram_t;
+typedef std::unordered_map<char, std::size_t> histogram_t;
 typedef std::vector<std::string> words_t;
 
 class anagram {
@@ -19,8 +19,6 @@ class anagram {
     
     // A map representation of the `sample` with the frequency of each character.
     histogram_t mapped_sample;
-    
-    std::string lower(const std::string& input_string) const;
 public:
     anagram(const std::string& input);
 
@@ -29,5 +27,9 @@ public:
 };
 
 } // namespace anagram
+
+namespace {
+    std::string lower(const std::string& input_string);
+} // unnamed namespace
 
 #endif // ANAGRAM_H

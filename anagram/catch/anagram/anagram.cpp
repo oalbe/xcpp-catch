@@ -51,11 +51,14 @@ words_t anagram::matches(const words_t& candidates) const {
     return __matches;
 }
 
-std::string anagram::lower(const std::string& input_string) const {
-    std::string output_str = input_string;
-    std::transform(output_str.begin(), output_str.end(), output_str.begin(), ::tolower);
-    
-    return output_str;
-}
 
 } // namespace anagram
+
+namespace {
+    std::string lower(const std::string& input_string) {
+        std::string output_str = input_string;
+        std::transform(output_str.begin(), output_str.end(), output_str.begin(), ::tolower);
+        
+        return output_str;
+    }
+} // unnamed namespace
