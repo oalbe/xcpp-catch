@@ -24,8 +24,8 @@ std::string to_rna(const std::string& dna_strand) {
     }
     
     return rna;
-} // namespace transcription
-
 }
+
+} // namespace transcription
 
 #endif // RNA_TRANSCRIPTION_H
