@@ -3,8 +3,6 @@
 #include <string>
 #include <regex>
 
-#include <iostream>
-
 
 class phone_number {
     std::string __number;
@@ -25,11 +23,11 @@ public:
         return "0000000000";
     }
     
-    std::string area_code() const {
+    inline std::string area_code() const {
         return number().substr(0, 3);
     }
     
-    operator std::string() const {
+    inline operator std::string() const {
         return "(" + __number.substr(0, 3) + ") " + __number.substr(3, 3) + "-" + 
            __number.substr(6);
     } 
