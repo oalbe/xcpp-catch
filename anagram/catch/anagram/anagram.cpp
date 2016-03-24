@@ -1,26 +1,31 @@
 #include "anagram.h"
+#include <algorithm>
 
 
 namespace anagram {
 
-anagram::anagram(const std::string& input) {
-    sample = input;
-    sample_size = sample.size();
-    
-    std::string lower_sample = lower(sample);
-    for (char character : lower_sample) {
+namespace {
+    std::string lower(std::string input_string) {
+        std::transform(input_string.begin(), input_string.end(), input_string.begin(), ::tolower);
+        
+        return input_string;
+    }
+} // unnamed namespace
+
+anagram::anagram(const std::string& input): sample(lower(input)) {
+    for (char character : sample) {
         ++mapped_sample[character];
     }
 }
 
 bool anagram::is_anagram(const std::string& candidate) const {
-    if (sample_size != candidate.size()) {
+    if (sample.size() != candidate.size()) {
         return false;
     }
     
     histogram_t mapped_sample_copy(mapped_sample);
     for (char character : candidate) {
-        mapped_sample_copy[character] -= 1;
+        --mapped_sample_copy[character];
     }
 
     for (auto& pair : mapped_sample_copy) {
@@ -34,12 +39,11 @@ bool anagram::is_anagram(const std::string& candidate) const {
 
 words_t anagram::matches(const words_t& candidates) const {
     words_t __matches;
-    
-    std::string lower_sample = lower(sample);
-    for (std::string candidate : candidates) {
+
+    for (auto& candidate : candidates) {
         std::string current = lower(candidate);
         
-        if (lower_sample == current) {
+        if (sample == current) {
             continue;
         }
         
@@ -51,14 +55,4 @@ words_t anagram::matches(const words_t& candidates) const {
     return __matches;
 }
 
-
 } // namespace anagram
-
-namespace {
-    std::string lower(const std::string& input_string) {
-        std::string output_str = input_string;
-        std::transform(output_str.begin(), output_str.end(), output_str.begin(), ::tolower);
-        
-        return output_str;
-    }
-} // unnamed namespace
