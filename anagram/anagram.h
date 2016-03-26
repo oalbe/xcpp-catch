@@ -17,10 +17,10 @@ class anagram {
     
     // A map representation of the `sample` with the frequency of each character.
     histogram_t mapped_sample;
+    bool is_anagram(const std::string& candidate) const;
 public:
     anagram(const std::string& input);
 
-    bool is_anagram(const std::string& candidate) const;
     words_t matches(const words_t& candidates) const;
 };
 

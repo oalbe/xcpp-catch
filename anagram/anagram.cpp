@@ -40,18 +40,12 @@ bool anagram::is_anagram(const std::string& candidate) const {
 words_t anagram::matches(const words_t& candidates) const {
     words_t __matches;
 
-    // TODO: Use `std::copy_if` instead of the for. Just to test it out.
-    for (auto& candidate : candidates) {
-        std::string current = lower(candidate);
-        
-        if (sample == current) {
-            continue;
-        }
-        
-        if (is_anagram(current)) {
-            __matches.push_back(candidate);
-        }
-    }
+    auto copy_lambda = [this](const std::string& s) {
+        std::string low_s = lower(s);
+        return (this->sample != low_s) ? this->is_anagram(low_s) : false;
+    };
+
+    std::copy_if(candidates.begin(), candidates.end(), std::back_inserter(__matches), copy_lambda);
     
     return __matches;
 }
