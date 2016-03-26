@@ -40,6 +40,7 @@ bool anagram::is_anagram(const std::string& candidate) const {
 words_t anagram::matches(const words_t& candidates) const {
     words_t __matches;
 
+    // TODO: Use `std::copy_if` instead of the for. Just to test it out.
     for (auto& candidate : candidates) {
         std::string current = lower(candidate);
         

@@ -8,8 +8,8 @@
 
 namespace anagram {
 
-typedef std::unordered_map<char, std::size_t> histogram_t;
-typedef std::vector<std::string> words_t;
+using histogram_t = std::unordered_map<char, std::size_t>;
+using words_t = std::vector<std::string>;
 
 class anagram {
     // The word against which the program tests candidate anagrams.
