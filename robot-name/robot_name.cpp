@@ -1,8 +1,7 @@
 #include "robot_name.h"
 #include <random>
-#include <algorithm>
-
-// #include <iostream>
+#include <cstdio>
+#include <unordered_set>
 
 
 namespace robot_name {
@@ -13,21 +12,15 @@ std::string generate_name() {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> rand_ascii(65, 90);
-    std::uniform_int_distribution<> rand_digit(0, 999);
+    std::uniform_int_distribution<> rand_digits(0, 999);
+
+    char name_buffer[6]; // 5 chars for the name, 1 char for the null-termination
+    std::snprintf(name_buffer, sizeof(name_buffer), "%c%c%.3i", rand_ascii(gen), rand_ascii(gen), rand_digits(gen));
     
-    char first_letter = rand_ascii(gen);
-    char second_letter = rand_ascii(gen);
-    int digits = rand_digit(gen);
-
-    std::string str_digits = std::to_string(digits);
-    if (100 > digits) {
-        str_digits = (2 == str_digits.size()) ? ("0" + str_digits) : ("00" + str_digits);
-    }
-
-    return first_letter + (second_letter + str_digits);
+    return std::string(name_buffer);
 }
     
-std::vector<std::string> used_names;
+std::unordered_set<std::string> used_names;
 
 } // unnamed namespace
 
@@ -42,15 +35,12 @@ std::string robot::name() const {
 void robot::reset() {
     std::string temp_name = generate_name();
 
-    if (used_names.size() > 0) {
-        while (
-            std::find(used_names.begin(), used_names.end(), temp_name) != std::end(used_names)) {
-            used_names.push_back(temp_name);
-            temp_name = generate_name();
-        }
+    while (used_names.count(temp_name)) {
+        used_names.insert(temp_name);
+        temp_name = generate_name();
     }
    
-    used_names.push_back(temp_name);
+    used_names.insert(temp_name);
     __name = temp_name;
 }
     
