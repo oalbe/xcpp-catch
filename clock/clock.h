@@ -1,7 +1,6 @@
 #ifndef CLOCK_H
 #define CLOCK_H
 #include <string>
-#include <iostream>
 
 
 namespace date_independent {
