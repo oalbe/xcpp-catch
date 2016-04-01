@@ -1,6 +1,7 @@
+#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#include <catch/catch.hpp>
+
 #include "difference_of_squares.h"
-#define BOOST_TEST_MAIN
-#include <boost/test/unit_test.hpp>
 
 TEST_CASE("Up to 5", "[answer]") {
     REQUIRE(225 == squares::square_of_sums(5));
