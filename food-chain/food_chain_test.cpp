@@ -11,7 +11,6 @@ TEST_CASE("Fly", "[answer]") {
     REQUIRE(expected == food_chain::verse(1));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("Spider", "[answer]") {
     std::string expected = "I know an old lady who swallowed a spider.\n"
         "It wriggled and jiggled and tickled inside her.\n"
@@ -92,7 +91,7 @@ TEST_CASE("Horse", "[answer]") {
     REQUIRE(expected == food_chain::verse(8));
 }
 
-TEST_CASE("Multiple_verses", "[answer]") {
+TEST_CASE("Multiple verses", "[answer]") {
     std::string expected = 
         "I know an old lady who swallowed a fly.\n"
         "I don't know why she swallowed the fly. Perhaps she'll die.\n"
@@ -106,7 +105,9 @@ TEST_CASE("Multiple_verses", "[answer]") {
     REQUIRE(expected == food_chain::verses(1, 2));
 }
 
-TEST_CASE("The_whole_song", "[answer]") {
+TEST_CASE("The whole song", "[answer]") {
     REQUIRE(food_chain::verses(1, 8) == food_chain::sing());
 }
+    
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
