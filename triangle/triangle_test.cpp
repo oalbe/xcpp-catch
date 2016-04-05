@@ -9,7 +9,6 @@ TEST_CASE("Equilateral triangles have equal sides", "[answer]") {
     REQUIRE(triangle::equilateral == triangle::kind(2, 2, 2));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("Larger equilateral triangles also have equal sides", "[answer]") {
     REQUIRE(triangle::equilateral == triangle::kind(10, 10, 10));
 }
@@ -46,23 +45,25 @@ TEST_CASE("Very small triangles are legal", "[answer]") {
     REQUIRE(triangle::scalene == triangle::kind(0.4, 0.6, 0.3));
 }
 
-// TEST_CASE("Triangles with no size are illegal", "[answer]") {
-//     REQUIRE_THROW ==(triangle::kind(0, 0, 0), std::domain_error);
-// }
+TEST_CASE("Triangles with no size are illegal", "[answer]") {
+    REQUIRE_THROWS_AS (triangle::kind(0, 0, 0), std::domain_error);
+}
 
-// TEST_CASE("Triangles with negative sides are illegal", "[answer]") {
-//     REQUIRE_THROW ==(triangle::kind(3, 4, -5), std::domain_error);
-// }
+TEST_CASE("Triangles with negative sides are illegal", "[answer]") {
+    REQUIRE_THROWS_AS (triangle::kind(3, 4, -5), std::domain_error);
+}
 
-// TEST_CASE("Triangles violating triangle inequality are illegal", "[answer]") {
-//     REQUIRE_THROW ==(triangle::kind(1, 1, 3), std::domain_error);
-// }
+TEST_CASE("Triangles violating triangle inequality are illegal", "[answer]") {
+    REQUIRE_THROWS_AS (triangle::kind(1, 1, 3), std::domain_error);
+}
 
-// TEST_CASE("Medium triangles violating triangle inequality are illegal", "[answer]") {
-//     REQUIRE_THROW ==(triangle::kind(2, 4, 2), std::domain_error);
-// }
+TEST_CASE("Medium triangles violating triangle inequality are illegal", "[answer]") {
+    REQUIRE_THROWS_AS (triangle::kind(2, 4, 2), std::domain_error);
+}
 
-// TEST_CASE("Larger triangles violating triangle inequality are illegal", "[answer]") {
-//     REQUIRE_THROW ==(triangle::kind(7, 3, 2), std::domain_error);
-// }
+TEST_CASE("Larger triangles violating triangle inequality are illegal", "[answer]") {
+    REQUIRE_THROWS_AS (triangle::kind(7, 3, 2), std::domain_error);
+}
+
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
