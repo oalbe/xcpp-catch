@@ -7,8 +7,8 @@ namespace prime {
 
 namespace {
 
-bool is_prime(lli_t test) {
-    lli_t limit = static_cast<lli_t>(std::sqrt(test) + 1);
+bool is_prime(uint_fast64_t test) {
+    uint_fast64_t limit = static_cast<uint_fast64_t>(std::sqrt(test) + 1);
     
     for (std::size_t i = 3; i < limit; i += 2) {
         if ((test % i) == 0) {
@@ -21,7 +21,7 @@ bool is_prime(lli_t test) {
 
 } // unnamed namespace
 
-lli_t nth(lli_t index) {
+uint_fast64_t nth(std::size_t index) {
     if (0 == index) {
         throw std::domain_error("Seriously? You want the zero-th prime?");
     }
@@ -30,7 +30,7 @@ lli_t nth(lli_t index) {
         return 2;
     }
     
-    lli_t possible_prime = 3;
+    uint_fast64_t possible_prime = 3;
 
     std::size_t i = 1;
     while (i < index) {
