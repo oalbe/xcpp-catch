@@ -33,15 +33,13 @@ sieve_t vector_convert_helper(std::vector<bool> sequence) {
 sieve_t primes(std::size_t limit) {
     std::vector<bool> primes_sequence = initialize_sieve(limit);
     
-    for (std::size_t i = 2; i <= limit; ++i) {
+    for (std::size_t i = 2; i <= std::sqrt(limit); ++i) {
         if (true == primes_sequence[i]) {
             continue;
         }
         
-        for (std::size_t j = i + 1; j <= limit; ++j) {
-            if ((j % i) == 0) {
-                primes_sequence[j] = true;
-            }
+        for (std::size_t j = i * i; j <= limit; j += i) {
+            primes_sequence[j] = true;
         }
     }
     
