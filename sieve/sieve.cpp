@@ -1,4 +1,5 @@
 #include "sieve.h"
+#include <cmath>
 
 
 namespace sieve {
@@ -7,10 +8,7 @@ namespace {
 
 // Takes care of initializing the sieve with all `false` values
 std::vector<bool> initialize_sieve(std::size_t limit) {
-    std::vector<bool> empty_sequence;
-    for (std::size_t i = 0; i <= limit; ++i) {
-        empty_sequence.push_back(false);
-    }
+    std::vector<bool> empty_sequence(limit, false);
     
     empty_sequence[0] = true;
     empty_sequence[1] = true;
