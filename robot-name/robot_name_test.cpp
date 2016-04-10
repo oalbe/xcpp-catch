@@ -1,5 +1,5 @@
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
-#include <catch/catch.hpp>
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
 
 #include "robot_name.h"
 #include <regex>
@@ -30,25 +30,25 @@ TEST_CASE("Different robots have different names", "[answer]") {
     REQUIRE(robot_one.name() != robot_two.name());
 }
 
-// TEST_CASE("Is able to reset name", "[answer]") {
-//     robot_name::robot robot;
-//     const auto original_name = robot.name();
+TEST_CASE("Is able to reset name", "[answer]") {
+    robot_name::robot robot;
+    const auto original_name = robot.name();
 
-//     robot.reset();
+    robot.reset();
 
-//     REQUIRE(original_name != robot.name());
-// }
+    REQUIRE(original_name != robot.name());
+}
 
-// TEST_CASE("Exhausting digits yields different names", "[answer]") {
-//     robot_name::robot robot;
-//     auto last_name = robot.name();
+TEST_CASE("Exhausting digits yields different names", "[answer]") {
+    robot_name::robot robot;
+    auto last_name = robot.name();
     
-//     for (int i = 0; i < 1000; ++i) {
-//         robot.reset();
-//         REQUIRE(last_name != robot.name());
-//         REQUIRE(std::regex_match(robot.name(), name_pattern));
-//     }
-// }
+    for (int i = 0; i < 1000; ++i) {
+        robot.reset();
+        REQUIRE(last_name != robot.name());
+        REQUIRE(std::regex_match(robot.name(), name_pattern));
+    }
+}
 
 #if defined(EXERCISM_RUN_ALL_TESTS)
 #endif

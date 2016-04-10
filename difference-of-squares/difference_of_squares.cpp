@@ -6,6 +6,7 @@ namespace squares {
 
 namespace {
 
+// REVIEW: No idea if this is a good practice.
 using lli_t = long long int;
 
 } // unnamed namespace

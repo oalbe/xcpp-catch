@@ -1,8 +1,8 @@
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
-#include <catch/catch.hpp>
-#include <stdexcept>
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
 
 #include "nucleotide_count.h"
+#include <stdexcept>
 
 
 TEST_CASE("Has no nucleotides", "[answer]") {
