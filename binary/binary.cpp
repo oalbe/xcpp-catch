@@ -6,7 +6,7 @@ namespace binary {
 
 namespace {
 
-bool validate_binary(std::string binary_string) {
+bool is_valid_binary(std::string binary_string) {
     for (std::size_t i = 0; i < binary_string.size(); ++i) {
         if (('0' != binary_string[i]) && ('1' != binary_string[i])) {
             return false;
@@ -19,7 +19,7 @@ bool validate_binary(std::string binary_string) {
 } // unnamed namespace
 
 int convert(std::string binary_string) {
-    if (!validate_binary(binary_string)) {
+    if (!is_valid_binary(binary_string)) {
         return 0;
     }
     
