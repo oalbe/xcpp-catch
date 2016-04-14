@@ -35,7 +35,7 @@ sieve_t primes(std::size_t limit) {
     std::vector<char> primes_sequence = initialize_sieve(limit);
     
     // for (std::size_t i = 2; i <= std::sqrt(limit); ++i) {
-    for (std::size_t i = 2; i <= std::sqrt(limit); ++i) {
+    for (std::size_t i = 2; i * i <= limit; ++i) {
         if (1 == primes_sequence[i]) {
             continue;
         }
