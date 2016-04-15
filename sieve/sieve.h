@@ -5,9 +5,10 @@
 
 namespace sieve {
 
-using sieve_t = std::vector<int>;
+using primes_t = std::vector<int>;
+using sieve_t = std::vector<char>;
 
-sieve_t primes(std::size_t limit);
+primes_t primes(std::size_t limit);
 
 } // namespace sieve
 

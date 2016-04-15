@@ -6,21 +6,21 @@ namespace sieve {
 namespace {
 
 // Takes care of initializing the sieve with all `0` values
-std::vector<char> initialize_sieve(std::size_t limit) {
-    std::vector<char> empty_sequence(limit, 0);
+sieve_t initialize_sieve(std::size_t limit) {
+    sieve_t empty_sieve(limit, 0);
     
-    empty_sequence[0] = 1;
-    empty_sequence[1] = 1;
+    empty_sieve[0] = 1;
+    empty_sieve[1] = 1;
 
-    return empty_sequence;
+    return empty_sieve;
 }
 
 // REVIEW: Should the `vector` here be passed by const reference?
-sieve_t vector_convert_helper(const std::vector<char>& sequence) {
-    sieve_t output;
+primes_t vector_convert_helper(const sieve_t& sieve) {
+    primes_t output;
     
-    for (std::size_t i = 0; i < sequence.size(); ++i) {
-        if (0 == sequence[i]) {
+    for (std::size_t i = 0; i < sieve.size(); ++i) {
+        if (0 == sieve[i]) {
             output.push_back(i);
         }
     }
@@ -30,20 +30,20 @@ sieve_t vector_convert_helper(const std::vector<char>& sequence) {
 
 } // unnamed namespace
 
-sieve_t primes(std::size_t limit) {
-    std::vector<char> primes_sequence = initialize_sieve(limit);
+primes_t primes(std::size_t limit) {
+    sieve_t sieve = initialize_sieve(limit);
 
     for (std::size_t i = 2; i * i <= limit; ++i) {
-        if (1 == primes_sequence[i]) {
+        if (1 == sieve[i]) {
             continue;
         }
         
         for (std::size_t j = i * i; j < limit; j += i) {
-            primes_sequence[j] = 1;
+            sieve[j] = 1;
         }
     }
     
-    return vector_convert_helper(primes_sequence);
+    return vector_convert_helper(sieve);
 }
 
 } // namespace sieve
