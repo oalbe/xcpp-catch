@@ -7,6 +7,7 @@ build/
 
 # Related to the cpp track
 cmake/
+build/
 boost/
 *.cmake
 *.exe
