@@ -5,11 +5,13 @@
 namespace anagram {
 
 namespace {
-    std::string lower(std::string input_string) {
-        std::transform(input_string.begin(), input_string.end(), input_string.begin(), ::tolower);
-        
-        return input_string;
-    }
+
+std::string lower(std::string input_string) {
+    std::transform(input_string.begin(), input_string.end(), input_string.begin(), ::tolower);
+    
+    return input_string;
+}
+
 } // unnamed namespace
 
 anagram::anagram(const std::string& input): sample(lower(input)) {
