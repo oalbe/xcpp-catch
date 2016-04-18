@@ -16,11 +16,8 @@ std::string lower(std::string input_string) {
 
 bool is_legal_hex(const std::string& hex_string) {
     std::regex allowed_symbols("[0-9a-f]+", std::regex::ECMAScript);
-    if (std::regex_match(lower(hex_string), allowed_symbols)) {
-        return true;
-    }
-    
-    return false;
+
+    return std::regex_match(lower(hex_string), allowed_symbols);
 }
 
 int parse_hex_digit(char digit) {
