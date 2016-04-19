@@ -15,7 +15,6 @@ sieve_t initialize_sieve(std::size_t limit) {
     return empty_sieve;
 }
 
-// REVIEW: Should the `vector` here be passed by const reference?
 primes_t vector_convert_helper(const sieve_t& sieve) {
     primes_t output;
     
