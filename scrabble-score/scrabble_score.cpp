@@ -1,7 +1,6 @@
 #include "scrabble_score.h"
 #include <unordered_map>
 #include <algorithm>
-#include <iostream>
 
 
 namespace scrabble_score {
