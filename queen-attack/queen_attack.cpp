@@ -25,11 +25,8 @@ chess_board::operator std::string() const {
         stringified_board += "_ _ _ _ _ _ _ _\n";
     }
     
-    // REVIEW: Chose which one's best to use.
-    // std::size_t white_position = ((white().first + 1) * 16) - (16 - (white().second * 2));
-    // std::size_t white_position = (white().first * 16) + (white().second * 2);
     std::size_t white_position = 2 * ((white().first * 8) + white().second);
-    std::size_t black_position = ((black().first + 1) * 16) - (16 - (black().second * 2));
+    std::size_t black_position = 2 * ((black().first * 8) + black().second);
     
     stringified_board[white_position] = 'W';
     stringified_board[black_position] = 'B';
