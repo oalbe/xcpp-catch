@@ -47,7 +47,6 @@ bool chess_board::can_attack() const {
     std::size_t deltax = white().first - black().first;
     std::size_t deltay = white().second - black().second;
 
-    // REVIEW: This can be split into two `if`s, but is it worth it?
     return (deltay == deltax) || (deltay == -deltax);
 }
 
